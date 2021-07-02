@@ -47,7 +47,7 @@ spec:
     script: |
       #!/usr/bin/env bash
       set -o errexit
-      CERT_CN=$(awk -F "  " '/^Certificate common name/ {print $2}' result)
+      CERT_CN=$(awk -F " " '/^Certificate subject/ {print substr($3, 2, length($3) - 2)}' result)
       echo "{ \"certificate-common-name\": \"${CERT_CN}\" }" > $(results.email.path)
       cat $(results.email.path)
       cat $(results.email.path) > ./certificate-common-name.json
