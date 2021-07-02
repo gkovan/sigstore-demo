@@ -1,12 +1,8 @@
 {
     "maintainers": [
         {
-            "name": "Bob Callaway",
-            "email": "bcallawa@redhat.com"
-        },
-        {
-            "name": "Ivan Font",
-            "email": "ifont@redhat.com"
+            "name": "Gerry Kovan",
+            "email": "gkovan@gmail.com"
         }
     ]
 }
