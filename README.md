@@ -6,6 +6,16 @@ Slides from the presentation can be seen at: [https://speakerdeck.com/redhatopen
 
 ## Setup
 
+### Install OpenShift Pipelines Operator
+
+From OpenShift Operator Hub, install OpenShift Pipelines Operator.
+
+Note:
+The Tekton resources in this repo main branch work with OpenShift Pipelines 1.2.3.
+This is the version for OCP 4.6.
+
+If you have OCP 4.7, you have to specifically select the OCP 4.6 channel to install Pipelines 1.2.3.
+
 ### Create Tekton Tasks
 
 ```shell
