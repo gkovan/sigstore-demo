@@ -9,4 +9,5 @@ spec:
   template:
     # In newer trigger versions the 'name' field will be deprecated and is
     # replaced by 'ref' field.
-    name: sigstore-demo-app
+    # name: sigstore-demo-app
+    ref: sigstore-demo-app

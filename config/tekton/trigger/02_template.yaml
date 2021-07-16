@@ -13,10 +13,11 @@ spec:
     description: The name of the deployment to be created / patched
 
   resourcetemplates:
-  - apiVersion: tekton.dev/v1beta1
+  - apiVersion: tekton.dev/v1alpha1
     kind: PipelineRun
     metadata:
-      name: build-verify-deploy-$(tt.params.git-repo-name)-$(uid)
+      # GK name: build-verify-deploy-$(tt.params.git-repo-name)-$(uid)
+      name: build-verify-deploy-$(uid)
     spec:
       serviceAccountName: pipeline
       pipelineRef:
