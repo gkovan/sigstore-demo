@@ -6,7 +6,7 @@ Slides from the presentation can be seen at: [https://speakerdeck.com/redhatopen
 
 ## Setup
 
-### Install OpenShift Pipelines Operator
+### Setup Infrastructure
 
 From OpenShift Operator Hub, install OpenShift Pipelines Operator.
 
@@ -15,6 +15,27 @@ The Tekton resources in this repo main branch work with OpenShift Pipelines 1.2.
 This is the version for OCP 4.6.
 
 If you have OCP 4.7, you have to specifically select the OCP 4.6 channel to install Pipelines 1.2.3.
+
+Create a project/namespace called `sigstore-demo-gk`
+```
+oc new-project sigstore-demo-gk
+```
+
+Add pipeline service account to the priveleged scc:
+```
+oc adm policy add-scc-to-user privileged -z pipeline
+```
+
+Create the registry-credentials secret:
+```
+kubectl create secret docker-registry registry-credentials --docker-server=https://index.docker.io/v2/  --docker-username=gkovan --docker-email=gkovan@hotmail.com --docker-password=my-fake-password -n sigstore-demo-gk
+```
+
+Patch the pipeline service account with the image pull secret:
+```
+kubectl patch serviceaccount pipeline \
+  -p "{\"imagePullSecrets\": [{\"name\": \"registry-credentials\"}]}" -n sigstore-deme-gk
+```
 
 ### Create Tekton Tasks
 
