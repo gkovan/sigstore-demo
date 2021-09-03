@@ -37,6 +37,38 @@ kubectl patch serviceaccount pipeline \
   -p "{\"imagePullSecrets\": [{\"name\": \"registry-credentials\"}]}" -n sigstore-deme-gk
 ```
 
+### Create the base image used in the scenario in your personal image registry (i.e. dockerhub)
+
+Pull the base image:
+```
+docker pull registry.access.redhat.com/ubi8/ubi-minimal:8.3
+```
+
+Create a tag to of the image to reference the dockerhub repo:
+```
+docker tag registry.access.redhat.com/ubi8/ubi-minimal:8.3  gkovan/ubi8-minimal:8.3
+```
+
+Push the base image to image registry
+```
+docker push gkovan/ubi8-minimal:8.3
+```
+
+Sign the image
+```
+export COSIGN_EXPERIMENTAL=1
+```
+
+```
+cosign sign -a mode=keyless gkovan/ubi8-minimal:8.3
+```
+
+Verify the image is signed
+```
+cosign verify gkovan/ubi8-minimal:8.3
+```
+
+
 ### Create Tekton Tasks
 
 ```shell
